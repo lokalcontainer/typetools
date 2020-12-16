@@ -1,0 +1,23 @@
+@import "./media.scss";
+
+@mixin themeInherit {
+  background-color: inherit;
+  color: inherit;
+  fill: currentColor;
+}
+
+@mixin singleColumn {
+  grid-template-columns: 1fr;
+}
+
+@mixin displayGrid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  align-items: flex-start;
+  @include media("screen", ">phone", "<sMonitor") {
+    grid-template-columns: 1fr 2fr;
+  }
+  @include media("screen", "<phone") {
+    @include singleColumn();
+  }
+}

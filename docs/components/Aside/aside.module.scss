@@ -1,0 +1,18 @@
+@import "@/styles/media.scss";
+
+.aside {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+
+  @include media("screen", "<sMonitor") {
+    height: 4rem;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  height: 4rem;
+}

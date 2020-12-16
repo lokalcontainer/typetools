@@ -1,0 +1,35 @@
+{
+  "name": "use-opentype",
+  "directories": {
+    "doc": "docs"
+  },
+  "workspaces": [
+    "src/*"
+  ],
+  "scripts": {
+    "test-packages": "cd src && npm run test",
+    "publish": "cd src && npm publish",
+    "docs": "cd docs && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pulipola/use-opentype.git"
+  },
+  "keywords": [
+    "opentype",
+    "opentype.js",
+    "react",
+    "glyphs",
+    "font",
+    "typography",
+    "javascript",
+    "use-opentype",
+    "otf-feature"
+  ],
+  "author": "Taufik Oktama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pulipola/use-opentype/issues"
+  },
+  "homepage": "https://github.com/pulipola/use-opentype#readme"
+}
