@@ -1,10 +1,11 @@
 import { FC } from "react";
-import { ThemeProvider } from "next-themes";
+import { ProviderFont } from "./ContextFont";
+import { ProviderVariable } from "./ContextVariable";
 
 export const ProviderApp: FC = ({ children }) => {
   return (
-    <ThemeProvider defaultTheme="system" enableSystem={true}>
-      {children}
-    </ThemeProvider>
+    <ProviderFont>
+      <ProviderVariable>{children}</ProviderVariable>
+    </ProviderFont>
   );
 };
