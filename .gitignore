@@ -3,6 +3,7 @@ node_modules
 .vercel
 .next
 .vscode
+.etc
 
 .env*
 .env.local
