@@ -1,34 +1,93 @@
 import "@/styles/global.scss";
 import App from "next/app";
+import { ThemeProvider } from "next-themes";
 import { ProviderApp } from "@/lib/context";
 import { Aside } from "@components/Aside";
+// import { Borders } from "@components/Borders";
 
-export default class MyApp extends App {
+export default class MyApp extends App<{ theme: string }> {
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, theme } = this.props;
     return (
       <>
-        <ProviderApp>
-          <Aside />
-          <Component {...pageProps} />
-        </ProviderApp>
+        <ThemeProvider forcedTheme={theme || undefined} defaultTheme="system">
+          <ProviderApp>
+            {/* <Borders /> */}
+            <Aside />
+            <Component {...pageProps} />
+          </ProviderApp>
+        </ThemeProvider>
 
         <style jsx global>{`
-          [data-theme="light"] {
-            background-color: #f5f5f5;
-            color: #151515;
+          @font-face {
+            font-family: "Alliance Platt";
+            src: url("/fonts/Alliance/Alliance-PlattBlack.woff") format("woff");
+            font-weight: 900;
+            font-style: normal;
+            font-display: block;
           }
-          [data-theme="dark"] {
-            background-color: #151515;
-            color: #f5f5f5;
+
+          @font-face {
+            font-family: "Alliance Platt";
+            src: url("/fonts/Alliance/Alliance-PlattBold.woff") format("woff");
+            font-weight: bold;
+            font-style: normal;
+            font-display: block;
+          }
+
+          @font-face {
+            font-family: "Alliance Platt";
+            src: url("/fonts/Alliance/Alliance-PlattExtraBold.woff")
+              format("woff");
+            font-weight: 800;
+            font-style: normal;
+            font-display: block;
+          }
+
+          @font-face {
+            font-family: "Alliance Platt";
+            src: url("/fonts/Alliance/Alliance-PlattLight.woff") format("woff");
+            font-weight: 300;
+            font-style: normal;
+            font-display: block;
+          }
+
+          @font-face {
+            font-family: "Alliance Platt";
+            src: url("/fonts/Alliance/Alliance-PlattSemiBold.woff")
+              format("woff");
+            font-weight: 600;
+            font-style: normal;
+            font-display: block;
+          }
+
+          @font-face {
+            font-family: "Alliance Platt";
+            src: url("/fonts/Alliance/Alliance-PlattMedium.woff") format("woff");
+            font-weight: 500;
+            font-style: normal;
+            font-display: block;
+          }
+
+          @font-face {
+            font-family: "Alliance Platt";
+            src: url("/fonts/Alliance/Alliance-PlattRegular.woff")
+              format("woff");
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
           }
 
           body {
-            background-color: inherit;
-            color: inherit;
-            font-family: "JetBrains Mono", monospace;
             padding: 0;
             margin: 0;
+            background-color: inherit;
+            color: inherit;
+            font-family: "Alliance Platt", sans-serif;
+            /*font-family: "Space Grotesk", sans-serif;*/
+            /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+              sans-serif;*/
           }
 
           .skip-link {

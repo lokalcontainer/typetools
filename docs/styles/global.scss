@@ -1,20 +1,231 @@
 @import "./media.scss";
 @import "./mixin.scss";
+@import "./theme.scss";
 
 * {
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   @include themeInherit();
   padding: 0;
   margin: 0;
-  font-family: "JetBrains Mono", monospace;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 #__next {
+  @include nextGrid();
   @include themeInherit();
   position: relative;
-  width: 100vw;
+  // width: 100vw;
+  @include media("screen", ">phone") {
+    padding: $border_width $border_width 0rem $border_width;
+  }
+}
+
+main {
+  @include themeInherit();
+}
+.grid {
   @include displayGrid();
 }
+
+.animation-stopper {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.custom-select {
+  position: relative;
+  height: 2rem;
+  overflow: hidden;
+  // border-radius: 2rem;
+  // margin-bottom: 0.75rem;
+  border-bottom: 1px solid;
+  cursor: pointer;
+
+  select {
+    height: 2rem;
+    border-radius: 0.25rem;
+    border: none;
+    padding: 0rem 2rem 0rem 0rem;
+    margin-right: 1rem;
+    // font-size: 1rem;
+    // font-size: 12px;
+    font-weight: inherit;
+    text-transform: capitalize;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: inherit;
+    appearance: none;
+    outline: none;
+    // z-index: 1;
+    cursor: pointer;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.35rem 0 0.35rem 0.65rem;
+    pointer-events: none;
+  }
+}
+
+.border {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  touch-action: none;
+  z-index: 1005;
+  @include media("screen", "<phone") {
+    display: none;
+  }
+
+  @mixin bdStyle {
+    background-color: #b2ec5d !important;
+    position: absolute;
+  }
+  @mixin bdHor {
+    @include bdStyle();
+    width: $border_width;
+    top: calc(#{$border_width} - 1px);
+    bottom: calc(#{$border_width} - 1px);
+    z-index: 1004;
+  }
+  @mixin bdVer {
+    @include bdStyle();
+    height: $border_width;
+    right: 0;
+    left: 0;
+  }
+
+  &-top {
+    @include bdVer();
+    top: 0;
+    border-bottom: 1px solid;
+  }
+  &-bottom {
+    @include bdVer();
+    bottom: 0;
+    border-top: 1px solid;
+  }
+
+  &-right {
+    @include bdHor();
+    right: 0;
+    border-left: 1px solid;
+  }
+  &-left {
+    @include bdHor();
+    left: 0;
+    border-right: 1px solid;
+  }
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 9.5px 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+
+  &:focus,
+  &:hover {
+    outline: none;
+    &::-webkit-slider-runnable-track,
+    &::-webkit-slider-thumb {
+      background-color: currentColor;
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    border: 0;
+    border-radius: 25px;
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+  }
+
+  &::-webkit-slider-thumb {
+    margin-top: -9.5px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid;
+    border-radius: 50px;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+}
+
+table {
+  width: 100%;
+  overflow: hidden;
+  table-layout: fixed;
+
+  tbody {
+    tr {
+      &:last-child {
+        th,
+        td {
+          border-bottom: none !important;
+        }
+      }
+    }
+  }
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.25rem 0;
+  text-align: left;
+  vertical-align: text-top;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  font-weight: normal;
+  border-bottom: 1px solid;
+  // font-size: 10px;
+
+  a {
+    position: relative;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+th {
+  width: 33.33%;
+  // font-weight: bold;
+  font-size: 10px;
+}
+// td {
+//   font-weight: bold;
+// }

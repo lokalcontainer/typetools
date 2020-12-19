@@ -1,0 +1,153 @@
+$BG_Light: #f5f5f5;
+$FG_Light: #151515;
+$BD_Light: #eaeaea;
+
+$BG_Dark: #101010;
+$FG_Dark: #aaaaaa;
+$BD_Dark: #202020;
+
+$BG_Worm: #b2ec5d;
+$FG_Worm: #006400;
+$BD_Worm: #88e400;
+
+@mixin themeLightNormal {
+  background-color: $BG_Light;
+  color: $FG_Light;
+}
+@mixin themeLightInvert {
+  background-color: $FG_Light;
+  color: $BG_Light;
+}
+@mixin themeLight_border {
+  border-color: $BD_Light !important;
+}
+
+@mixin themeDarkNormal {
+  background-color: $BG_Dark;
+  color: $FG_Dark;
+}
+@mixin themeDarkInvert {
+  background-color: $FG_Dark;
+  color: $BG_Dark;
+}
+@mixin themeDark_border {
+  border-color: $BD_Dark !important;
+}
+
+@mixin themeWormNormal {
+  background-color: $BG_Worm;
+  color: $FG_Worm;
+}
+@mixin themeWormInvert {
+  background-color: $FG_Worm;
+  color: $BG_Worm;
+}
+@mixin themeInchWom_border {
+  border-color: $BD_Worm !important;
+}
+
+[data-theme="light"] {
+  @include themeLightNormal();
+
+  body,
+  .theme {
+    @include themeLightNormal();
+  }
+  * {
+    @include themeLight_border();
+    &::before {
+      // font-family: "Space Grotesk";
+      @include themeLightNormal();
+    }
+    &::selection {
+      @include themeLightInvert();
+    }
+  }
+
+  input[type="range"] {
+    &:focus,
+    &:hover {
+      outline: none;
+      &::-webkit-slider-runnable-track,
+      &::-webkit-slider-thumb {
+        @include themeDarkNormal();
+      }
+    }
+    &::-webkit-slider-thumb {
+      @include themeLightNormal();
+    }
+    &::-webkit-slider-runnable-track {
+      @include themeDarkNormal();
+    }
+  }
+}
+
+[data-theme="dark"] {
+  @include themeDarkNormal();
+  body,
+  .theme {
+    @include themeDarkNormal();
+  }
+  * {
+    @include themeDark_border();
+    &::before {
+      // font-family: "Space Grotesk";
+      @include themeDarkNormal();
+    }
+    &::selection {
+      @include themeDarkInvert();
+    }
+  }
+
+  input[type="range"] {
+    &:focus,
+    &:hover {
+      outline: none;
+      &::-webkit-slider-runnable-track,
+      &::-webkit-slider-thumb {
+        @include themeLightNormal();
+      }
+    }
+    &::-webkit-slider-thumb {
+      @include themeDarkNormal();
+    }
+    &::-webkit-slider-runnable-track {
+      @include themeLightNormal();
+    }
+  }
+}
+
+[data-theme="worm"] {
+  @include themeWormNormal();
+  body,
+  .theme {
+    @include themeWormNormal();
+  }
+  * {
+    @include themeInchWom_border();
+    &::before {
+      // font-family: "Space Grotesk";
+      @include themeWormNormal();
+    }
+    &::selection {
+      @include themeWormInvert();
+    }
+  }
+
+  input[type="range"] {
+    &:focus,
+    &:hover {
+      outline: none;
+      &::-webkit-slider-runnable-track,
+      &::-webkit-slider-thumb {
+        @include themeWormInvert();
+      }
+    }
+    &::-webkit-slider-thumb {
+      @include themeWormNormal();
+    }
+    &::-webkit-slider-runnable-track {
+      @include themeWormInvert();
+    }
+  }
+}

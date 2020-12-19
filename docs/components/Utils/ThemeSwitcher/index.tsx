@@ -1,14 +1,28 @@
 import { useTheme } from "next-themes";
+import { SVGArrow } from "../SVG";
 
 export const ThemeSwitcher = () => {
-  const { themes, theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const themes = ["light", "dark", "worm", "system"];
   return (
-    <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-      {themes.map((val: string, key: number) => (
-        <option key={key} value={val}>
-          {val}
-        </option>
-      ))}
-    </select>
+    <>
+      <div className="custom-select">
+        <select
+          value={theme}
+          className="theme"
+          aria-label="theme-switcher"
+          onChange={(e) => setTheme(e.target.value)}
+        >
+          {themes.map((item, key) => (
+            <option key={key} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+        <span>
+          <SVGArrow type="expand-more" />
+        </span>
+      </div>
+    </>
   );
 };
